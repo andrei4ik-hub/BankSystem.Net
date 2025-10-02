@@ -1,0 +1,15 @@
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\bin\Debug\net8.0\CreditBureau.Services.deps.json
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\bin\Debug\net8.0\CreditBureau.Services.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\bin\Debug\net8.0\CreditBureau.Services.pdb
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\bin\Debug\net8.0\CreditBureau.Core.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\bin\Debug\net8.0\CreditBureau.Core.pdb
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.csproj.AssemblyReference.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.AssemblyInfoInputs.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.AssemblyInfo.cs
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.csproj.CoreCompileInputs.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBu.19F62A27.Up2Date
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\refint\CreditBureau.Services.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.pdb
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\ref\CreditBureau.Services.dll

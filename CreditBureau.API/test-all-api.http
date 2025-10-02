@@ -1,0 +1,324 @@
+### 1. ТЕСТИРОВАНИЕ ЗАЕМЩИКОВ (Borrowers)
+
+### Получить всех заемщиков (должен быть пустой массив)
+GET https://localhost:7000/api/Borrowers
+
+### Создать первого заемщика
+POST https://localhost:7000/api/Borrowers
+Content-Type: application/json
+
+{
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "middleName": "Иванович",
+  "passportSeries": "4510",
+  "passportNumber": "123456",
+  "birthDate": "1985-05-15",
+  "phoneNumber": "+79991234567",
+  "email": "ivanov@mail.ru"
+}
+
+### Создать второго заемщика
+POST https://localhost:7000/api/Borrowers
+Content-Type: application/json
+
+{
+  "firstName": "Мария",
+  "lastName": "Петрова",
+  "middleName": "Сергеевна",
+  "passportSeries": "4511",
+  "passportNumber": "654321",
+  "birthDate": "1990-08-20",
+  "phoneNumber": "+79997654321",
+  "email": "petrova@mail.ru"
+}
+
+### Создать третьего заемщика
+POST https://localhost:7000/api/Borrowers
+Content-Type: application/json
+
+{
+  "firstName": "Алексей",
+  "lastName": "Сидоров",
+  "middleName": "Владимирович",
+  "passportSeries": "4512",
+  "passportNumber": "789012",
+  "birthDate": "1988-12-10",
+  "phoneNumber": "+79995554433",
+  "email": "sidorov@mail.ru"
+}
+
+### Получить всех заемщиков (должно быть 3)
+GET https://localhost:7000/api/Borrowers
+
+### Получить заемщика по ID
+GET https://localhost:7000/api/Borrowers/1
+
+### Обновить данные заемщика
+PUT https://localhost:7000/api/Borrowers/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "firstName": "Мария",
+  "lastName": "Петрова",
+  "middleName": "Сергеевна",
+  "passportSeries": "4511",
+  "passportNumber": "654321",
+  "birthDate": "1990-08-20",
+  "phoneNumber": "+79997654399",  // Изменен номер
+  "email": "petrova.new@mail.ru"  // Изменен email
+}
+
+### Проверить обновление
+GET https://localhost:7000/api/Borrowers/2
+
+### 2. ТЕСТИРОВАНИЕ КРЕДИТОРОВ (Lenders)
+
+### Получить всех кредиторов
+GET https://localhost:7000/api/Lenders
+
+### Создать первый банк
+POST https://localhost:7000/api/Lenders
+Content-Type: application/json
+
+{
+  "name": "Сбербанк",
+  "licenseNumber": "1234567890",
+  "address": "Москва, ул. Вавилова, 19",
+  "phoneNumber": "+74955005500",
+  "email": "info@sberbank.ru"
+}
+
+### Создать второй банк
+POST https://localhost:7000/api/Lenders
+Content-Type: application/json
+
+{
+  "name": "ВТБ",
+  "licenseNumber": "0987654321",
+  "address": "Москва, ул. Мясницкая, 35",
+  "phoneNumber": "+74959895000",
+  "email": "info@vtb.ru"
+}
+
+### Создать третий банк
+POST https://localhost:7000/api/Lenders
+Content-Type: application/json
+
+{
+  "name": "Альфа-Банк",
+  "licenseNumber": "1122334455",
+  "address": "Москва, Калужская пл., 1",
+  "phoneNumber": "+74957407747",
+  "email": "info@alfabank.ru"
+}
+
+### Получить всех кредиторов (должно быть 3)
+GET https://localhost:7000/api/Lenders
+
+### Получить кредитора по ID
+GET https://localhost:7000/api/Lenders/1
+
+### Обновить данные кредитора
+PUT https://localhost:7000/api/Lenders/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "ВТБ Банк",
+  "licenseNumber": "0987654321",
+  "address": "Москва, ул. Мясницкая, 35, стр. 1",
+  "phoneNumber": "+74959895111",
+  "email": "corporate@vtb.ru"
+}
+
+### Проверить обновление
+GET https://localhost:7000/api/Lenders/2
+
+### 3. ТЕСТИРОВАНИЕ КРЕДИТНЫХ ИСТОРИЙ (CreditHistories)
+
+### Получить все кредитные истории
+GET https://localhost:7000/api/CreditHistories
+
+### Создать кредитную историю 1: Иванов в Сбербанке
+POST https://localhost:7000/api/CreditHistories
+Content-Type: application/json
+
+{
+  "borrowerId": 1,
+  "lenderId": 1,
+  "loanAmount": 500000.00,
+  "interestRate": 12.5,
+  "loanTermMonths": 60,
+  "loanIssueDate": "2023-01-15",
+  "loanEndDate": "2028-01-15",
+  "status": "Active",
+  "remainingDebt": 450000.00,
+  "daysPastDue": 0
+}
+
+### Создать кредитную историю 2: Иванов в ВТБ
+POST https://localhost:7000/api/CreditHistories
+Content-Type: application/json
+
+{
+  "borrowerId": 1,
+  "lenderId": 2,
+  "loanAmount": 300000.00,
+  "interestRate": 10.0,
+  "loanTermMonths": 36,
+  "loanIssueDate": "2022-06-10",
+  "loanEndDate": "2025-06-10",
+  "status": "Active",
+  "remainingDebt": 150000.00,
+  "daysPastDue": 0
+}
+
+### Создать кредитную историю 3: Петрова в Сбербанке
+POST https://localhost:7000/api/CreditHistories
+Content-Type: application/json
+
+{
+  "borrowerId": 2,
+  "lenderId": 1,
+  "loanAmount": 1000000.00,
+  "interestRate": 8.5,
+  "loanTermMonths": 120,
+  "loanIssueDate": "2021-03-20",
+  "loanEndDate": "2031-03-20",
+  "status": "Active",
+  "remainingDebt": 800000.00,
+  "daysPastDue": 5
+}
+
+### Создать кредитную историю 4: Сидоров в Альфа-Банке
+POST https://localhost:7000/api/CreditHistories
+Content-Type: application/json
+
+{
+  "borrowerId": 3,
+  "lenderId": 3,
+  "loanAmount": 750000.00,
+  "interestRate": 9.0,
+  "loanTermMonths": 48,
+  "loanIssueDate": "2023-11-01",
+  "loanEndDate": "2027-11-01",
+  "status": "Active",
+  "remainingDebt": 720000.00,
+  "daysPastDue": 0
+}
+
+### Получить все кредитные истории (должно быть 4)
+GET https://localhost:7000/api/CreditHistories
+
+### Получить кредитную историю по ID
+GET https://localhost:7000/api/CreditHistories/1
+
+### Получить кредитные истории конкретного заемщика (Иванов)
+GET https://localhost:7000/api/CreditHistories/borrower/1
+
+### Получить кредитные истории конкретного кредитора (Сбербанк)
+GET https://localhost:7000/api/CreditHistories/borrower/1
+
+### Обновить кредитную историю (закрыть кредит)
+PUT https://localhost:7000/api/CreditHistories/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "borrowerId": 1,
+  "lenderId": 2,
+  "loanAmount": 300000.00,
+  "interestRate": 10.0,
+  "loanTermMonths": 36,
+  "loanIssueDate": "2022-06-10",
+  "loanEndDate": "2025-06-10",
+  "status": "Closed",
+  "remainingDebt": 0.00,
+  "daysPastDue": 0
+}
+
+### Проверить обновление
+GET https://localhost:7000/api/CreditHistories/2
+
+### 4. ТЕСТИРОВАНИЕ ОШИБОК И ВАЛИДАЦИИ
+
+### Попытка создать заемщика без обязательных полей
+POST https://localhost:7000/api/Borrowers
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "",
+  "passportSeries": "4510",
+  "passportNumber": "999999"
+}
+
+### Попытка создать кредитора без названия
+POST https://localhost:7000/api/Lenders
+Content-Type: application/json
+
+{
+  "name": "",
+  "licenseNumber": "9999999999"
+}
+
+### Попытка создать кредитную историю с отрицательной суммой
+POST https://localhost:7000/api/CreditHistories
+Content-Type: application/json
+
+{
+  "borrowerId": 1,
+  "lenderId": 1,
+  "loanAmount": -100000.00,
+  "interestRate": 5.0,
+  "loanTermMonths": 12
+}
+
+### Попытка получить несуществующего заемщика
+GET https://localhost:7000/api/Borrowers/999
+
+### Попытка обновить несуществующего кредитора
+PUT https://localhost:7000/api/Lenders/999
+Content-Type: application/json
+
+{
+  "id": 999,
+  "name": "Несуществующий банк",
+  "licenseNumber": "0000000000"
+}
+
+### 5. ТЕСТИРОВАНИЕ УДАЛЕНИЯ
+
+### Удалить кредитную историю
+DELETE https://localhost:7000/api/CreditHistories/4
+
+### Проверить, что удалилось
+GET https://localhost:7000/api/CreditHistories
+
+### Удалить заемщика
+DELETE https://localhost:7000/api/Borrowers/3
+
+### Проверить, что удалилось
+GET https://localhost:7000/api/Borrowers
+
+### Удалить кредитора
+DELETE https://localhost:7000/api/Lenders/3
+
+### Проверить, что удалилось
+GET https://localhost:7000/api/Lenders
+
+### 6. ФИНАЛЬНАЯ ПРОВЕРКА СОСТОЯНИЯ
+
+### Получить итоговый список заемщиков
+GET https://localhost:7000/api/Borrowers
+
+### Получить итоговый список кредиторов
+GET https://localhost:7000/api/Lenders
+
+### Получить итоговый список кредитных историй
+GET https://localhost:7000/api/CreditHistories
+
+### Получить кредитные истории оставшегося заемщика
+GET https://localhost:7000/api/CreditHistories/borrower/1

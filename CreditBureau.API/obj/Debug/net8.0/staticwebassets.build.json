@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "CqYHeeFc2AWv6cVmpg9FzeazGgCdn3FVpwxyqvu+tMk=",
+  "Source": "CreditBureau.API",
+  "BasePath": "_content/CreditBureau.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

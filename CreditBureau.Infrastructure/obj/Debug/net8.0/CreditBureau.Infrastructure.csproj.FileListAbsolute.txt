@@ -1,0 +1,17 @@
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\bin\Debug\net8.0\CreditBureau.Infrastructure.deps.json
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\bin\Debug\net8.0\CreditBureau.Infrastructure.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\bin\Debug\net8.0\CreditBureau.Infrastructure.pdb
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\bin\Debug\net8.0\CreditBureau.Core.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\bin\Debug\net8.0\CreditBureau.Core.pdb
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.AssemblyInfo.cs
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBu.ED6E76C2.Up2Date
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\refint\CreditBureau.Infrastructure.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.pdb
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\ref\CreditBureau.Infrastructure.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\bin\Debug\net8.0\CreditBureau.Infrastructure.runtimeconfig.json
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.genruntimeconfig.cache
