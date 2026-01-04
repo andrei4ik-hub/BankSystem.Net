@@ -26,23 +26,34 @@ namespace CreditBureau.API.Controllers
         public async Task<ActionResult<Lender>> GetLender(int id)
         {
             var lender = await _lenderService.GetLenderByIdAsync(id);
-            if (lender == null) return NotFound();
+            if (lender == null)
+                return NotFound();
             return Ok(lender);
         }
 
         [HttpPost]
         public async Task<ActionResult<Lender>> CreateLender(Lender lender)
         {
-            var createdLender = await _lenderService.CreateLenderAsync(lender);
-            return CreatedAtAction(nameof(GetLender), new { id = createdLender.Id }, createdLender);
+            try
+            {
+                var createdLender = await _lenderService.CreateLenderAsync(lender);
+                return CreatedAtAction(nameof(GetLender), new { id = createdLender.Id }, createdLender);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Lender>> UpdateLender(int id, Lender lender)
         {
-            if (id != lender.Id) return BadRequest();
+            if (id != lender.Id)
+                return BadRequest("ID в пути не совпадает с ID в теле запроса");
+
             var updatedLender = await _lenderService.UpdateLenderAsync(id, lender);
-            if (updatedLender == null) return NotFound();
+            if (updatedLender == null)
+                return NotFound();
             return Ok(updatedLender);
         }
 
@@ -50,7 +61,8 @@ namespace CreditBureau.API.Controllers
         public async Task<ActionResult> DeleteLender(int id)
         {
             var result = await _lenderService.DeleteLenderAsync(id);
-            if (!result) return NotFound();
+            if (!result)
+                return NotFound();
             return NoContent();
         }
     }

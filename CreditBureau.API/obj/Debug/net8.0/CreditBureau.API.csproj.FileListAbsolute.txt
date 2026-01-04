@@ -174,3 +174,6 @@ C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.API\bin\Debug\net8.0
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.API\obj\Debug\net8.0\CreditBureau.API.sourcelink.json
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.API\bin\Debug\net8.0\Npgsql.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.API\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

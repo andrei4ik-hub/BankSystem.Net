@@ -13,3 +13,4 @@ C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\n
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\refint\CreditBureau.Services.dll
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.pdb
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\ref\CreditBureau.Services.dll
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Services\obj\Debug\net8.0\CreditBureau.Services.sourcelink.json

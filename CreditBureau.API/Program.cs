@@ -5,6 +5,9 @@ using CreditBureau.Infrastructure.Data;
 using CreditBureau.Services;
 using CreditBureau.Services.Interfaces;
 
+// РЕШЕНИЕ: Включаем совместимость с legacy timestamp behavior
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,9 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Database Configuration
+// PostgreSQL Configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("CreditBureauDB"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnection")));
 
 // Dependency Injection
 builder.Services.AddScoped<IBorrowerRepository, BorrowerRepository>();
@@ -32,18 +35,18 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    
+    // Apply migrations automatically in development
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        dbContext.Database.Migrate();
+        Console.WriteLine("Database migrated successfully!");
+    }
 }
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
-// Ensure database is created
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    dbContext.Database.EnsureCreated();
-    Console.WriteLine("In-Memory Database created successfully!");
-}
 
 app.Run();

@@ -15,3 +15,4 @@ C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\D
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\ref\CreditBureau.Infrastructure.dll
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\bin\Debug\net8.0\CreditBureau.Infrastructure.runtimeconfig.json
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.genruntimeconfig.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Infrastructure\obj\Debug\net8.0\CreditBureau.Infrastructure.sourcelink.json

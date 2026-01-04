@@ -44,7 +44,6 @@ namespace CreditBureau.Infrastructure.Repositories
             if (existingBorrower == null)
                 return null;
 
-            // Обновляем поля
             existingBorrower.FirstName = borrower.FirstName;
             existingBorrower.LastName = borrower.LastName;
             existingBorrower.MiddleName = borrower.MiddleName;

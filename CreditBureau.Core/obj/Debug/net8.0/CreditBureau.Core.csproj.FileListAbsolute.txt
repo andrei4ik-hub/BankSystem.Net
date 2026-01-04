@@ -10,3 +10,4 @@ C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Core\obj\Debug\net8.
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Core\obj\Debug\net8.0\CreditBureau.Core.pdb
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Core\obj\Debug\net8.0\ref\CreditBureau.Core.dll
 C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Core\obj\Debug\net8.0\CreditBureau.Core.csproj.AssemblyReference.cache
+C:\Users\MiPro\Desktop\lab\CreditBureauProject\CreditBureau.Core\obj\Debug\net8.0\CreditBureau.Core.sourcelink.json

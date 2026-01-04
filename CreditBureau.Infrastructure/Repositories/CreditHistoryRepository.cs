@@ -1,49 +1,67 @@
+using Microsoft.EntityFrameworkCore;
 using CreditBureau.Core.Interfaces;
 using CreditBureau.Core.Models;
+using CreditBureau.Infrastructure.Data;
 
 namespace CreditBureau.Infrastructure.Repositories
 {
     public class CreditHistoryRepository : ICreditHistoryRepository
     {
-        private readonly List<CreditHistory> _creditHistories = new();
-        private int _nextId = 1;
+        private readonly AppDbContext _context;
 
-        public Task<IEnumerable<CreditHistory>> GetAllAsync()
+        public CreditHistoryRepository(AppDbContext context)
         {
-            return Task.FromResult(_creditHistories.AsEnumerable());
+            _context = context;
         }
 
-        public Task<CreditHistory?> GetByIdAsync(int id)
+        public async Task<IEnumerable<CreditHistory>> GetAllAsync()
         {
-            var history = _creditHistories.FirstOrDefault(ch => ch.Id == id);
-            return Task.FromResult(history);
+         
+            return await _context.CreditHistories
+                .OrderByDescending(ch => ch.LoanIssueDate)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<CreditHistory>> GetByBorrowerIdAsync(int borrowerId)
+        public async Task<CreditHistory?> GetByIdAsync(int id)
         {
-            var histories = _creditHistories.Where(ch => ch.BorrowerId == borrowerId);
-            return Task.FromResult(histories);
+            
+            return await _context.CreditHistories
+                .FirstOrDefaultAsync(ch => ch.Id == id);
         }
 
-        public Task<IEnumerable<CreditHistory>> GetByLenderIdAsync(int lenderId)
+        public async Task<IEnumerable<CreditHistory>> GetByBorrowerIdAsync(int borrowerId)
         {
-            var histories = _creditHistories.Where(ch => ch.LenderId == lenderId);
-            return Task.FromResult(histories);
+        
+            return await _context.CreditHistories
+                .Where(ch => ch.BorrowerId == borrowerId)
+                .OrderByDescending(ch => ch.LoanIssueDate)
+                .ToListAsync();
         }
 
-        public Task<CreditHistory> AddAsync(CreditHistory creditHistory)
+        public async Task<IEnumerable<CreditHistory>> GetByLenderIdAsync(int lenderId)
         {
-            creditHistory.Id = _nextId++;
+           
+            return await _context.CreditHistories
+                .Where(ch => ch.LenderId == lenderId)
+                .OrderByDescending(ch => ch.LoanIssueDate)
+                .ToListAsync();
+        }
+
+        public async Task<CreditHistory> AddAsync(CreditHistory creditHistory)
+        {
             creditHistory.CreatedAt = DateTime.UtcNow;
-            _creditHistories.Add(creditHistory);
-            return Task.FromResult(creditHistory);
+            _context.CreditHistories.Add(creditHistory);
+            await _context.SaveChangesAsync();
+            return creditHistory;
         }
 
-        public Task<CreditHistory?> UpdateAsync(CreditHistory creditHistory)
+        public async Task<CreditHistory?> UpdateAsync(CreditHistory creditHistory)
         {
-            var existingHistory = _creditHistories.FirstOrDefault(ch => ch.Id == creditHistory.Id);
+            var existingHistory = await _context.CreditHistories
+                .FirstOrDefaultAsync(ch => ch.Id == creditHistory.Id);
+                
             if (existingHistory == null)
-                return Task.FromResult<CreditHistory?>(null);
+                return null;
 
             existingHistory.LoanAmount = creditHistory.LoanAmount;
             existingHistory.InterestRate = creditHistory.InterestRate;
@@ -55,17 +73,30 @@ namespace CreditBureau.Infrastructure.Repositories
             existingHistory.DaysPastDue = creditHistory.DaysPastDue;
             existingHistory.UpdatedAt = DateTime.UtcNow;
 
-            return Task.FromResult<CreditHistory?>(existingHistory);
+            await _context.SaveChangesAsync();
+            return existingHistory;
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var history = _creditHistories.FirstOrDefault(ch => ch.Id == id);
-            if (history == null)
-                return Task.FromResult(false);
+            var creditHistory = await _context.CreditHistories
+                .FirstOrDefaultAsync(ch => ch.Id == id);
+                
+            if (creditHistory == null)
+                return false;
 
-            _creditHistories.Remove(history);
-            return Task.FromResult(true);
+            _context.CreditHistories.Remove(creditHistory);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        // ДОБАВЛЯЕМ метод для получения с связанными данными
+        public async Task<CreditHistory?> GetByIdWithDetailsAsync(int id)
+        {
+            return await _context.CreditHistories
+                .Include(ch => ch.Borrower)
+                .Include(ch => ch.Lender)
+                .FirstOrDefaultAsync(ch => ch.Id == id);
         }
     }
 }

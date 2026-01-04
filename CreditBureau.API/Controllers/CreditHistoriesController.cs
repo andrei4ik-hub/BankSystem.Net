@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using CreditBureau.Core.Models;
+using CreditBureau.Core.DTOs;
 using CreditBureau.Services.Interfaces;
 
 namespace CreditBureau.API.Controllers
@@ -16,40 +17,51 @@ namespace CreditBureau.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CreditHistory>>> GetCreditHistories()
+        public async Task<ActionResult<IEnumerable<CreditHistoryDto>>> GetCreditHistories()
         {
             var histories = await _creditHistoryService.GetAllCreditHistoriesAsync();
             return Ok(histories);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CreditHistory>> GetCreditHistory(int id)
+        public async Task<ActionResult<CreditHistoryDto>> GetCreditHistory(int id)
         {
             var history = await _creditHistoryService.GetCreditHistoryByIdAsync(id);
-            if (history == null) return NotFound();
+            if (history == null)
+                return NotFound();
             return Ok(history);
         }
 
         [HttpGet("borrower/{borrowerId}")]
-        public async Task<ActionResult<IEnumerable<CreditHistory>>> GetByBorrower(int borrowerId)
+        public async Task<ActionResult<IEnumerable<CreditHistoryDto>>> GetByBorrower(int borrowerId)
         {
             var histories = await _creditHistoryService.GetCreditHistoriesByBorrowerAsync(borrowerId);
             return Ok(histories);
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreditHistory>> CreateCreditHistory(CreditHistory creditHistory)
+        public async Task<ActionResult<CreditHistory>> CreateCreditHistory(CreateCreditHistoryDto createDto)
         {
-            var createdHistory = await _creditHistoryService.CreateCreditHistoryAsync(creditHistory);
-            return CreatedAtAction(nameof(GetCreditHistory), new { id = createdHistory.Id }, createdHistory);
+            try
+            {
+                var createdHistory = await _creditHistoryService.CreateCreditHistoryAsync(createDto);
+                return CreatedAtAction(nameof(GetCreditHistory), new { id = createdHistory.Id }, createdHistory);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<CreditHistory>> UpdateCreditHistory(int id, CreditHistory creditHistory)
         {
-            if (id != creditHistory.Id) return BadRequest();
+            if (id != creditHistory.Id)
+                return BadRequest("ID в пути не совпадает с ID в теле запроса");
+
             var updatedHistory = await _creditHistoryService.UpdateCreditHistoryAsync(id, creditHistory);
-            if (updatedHistory == null) return NotFound();
+            if (updatedHistory == null)
+                return NotFound();
             return Ok(updatedHistory);
         }
 
@@ -57,7 +69,8 @@ namespace CreditBureau.API.Controllers
         public async Task<ActionResult> DeleteCreditHistory(int id)
         {
             var result = await _creditHistoryService.DeleteCreditHistoryAsync(id);
-            if (!result) return NotFound();
+            if (!result)
+                return NotFound();
             return NoContent();
         }
     }

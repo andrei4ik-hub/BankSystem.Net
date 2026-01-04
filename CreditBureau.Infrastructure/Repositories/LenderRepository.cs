@@ -1,37 +1,47 @@
+using Microsoft.EntityFrameworkCore;
 using CreditBureau.Core.Interfaces;
 using CreditBureau.Core.Models;
+using CreditBureau.Infrastructure.Data;
 
 namespace CreditBureau.Infrastructure.Repositories
 {
     public class LenderRepository : ILenderRepository
     {
-        private readonly List<Lender> _lenders = new();
-        private int _nextId = 1;
+        private readonly AppDbContext _context;
 
-        public Task<IEnumerable<Lender>> GetAllAsync()
+        public LenderRepository(AppDbContext context)
         {
-            return Task.FromResult(_lenders.AsEnumerable());
+            _context = context;
         }
 
-        public Task<Lender?> GetByIdAsync(int id)
+        public async Task<IEnumerable<Lender>> GetAllAsync()
         {
-            var lender = _lenders.FirstOrDefault(l => l.Id == id);
-            return Task.FromResult(lender);
+            return await _context.Lenders
+                .OrderBy(l => l.Name)
+                .ToListAsync();
         }
 
-        public Task<Lender> AddAsync(Lender lender)
+        public async Task<Lender?> GetByIdAsync(int id)
         {
-            lender.Id = _nextId++;
+            return await _context.Lenders
+                .FirstOrDefaultAsync(l => l.Id == id);
+        }
+
+        public async Task<Lender> AddAsync(Lender lender)
+        {
             lender.CreatedAt = DateTime.UtcNow;
-            _lenders.Add(lender);
-            return Task.FromResult(lender);
+            _context.Lenders.Add(lender);
+            await _context.SaveChangesAsync();
+            return lender;
         }
 
-        public Task<Lender?> UpdateAsync(Lender lender)
+        public async Task<Lender?> UpdateAsync(Lender lender)
         {
-            var existingLender = _lenders.FirstOrDefault(l => l.Id == lender.Id);
+            var existingLender = await _context.Lenders
+                .FirstOrDefaultAsync(l => l.Id == lender.Id);
+                
             if (existingLender == null)
-                return Task.FromResult<Lender?>(null);
+                return null;
 
             existingLender.Name = lender.Name;
             existingLender.LicenseNumber = lender.LicenseNumber;
@@ -40,22 +50,27 @@ namespace CreditBureau.Infrastructure.Repositories
             existingLender.Email = lender.Email;
             existingLender.UpdatedAt = DateTime.UtcNow;
 
-            return Task.FromResult<Lender?>(existingLender);
+            await _context.SaveChangesAsync();
+            return existingLender;
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var lender = _lenders.FirstOrDefault(l => l.Id == id);
+            var lender = await _context.Lenders
+                .FirstOrDefaultAsync(l => l.Id == id);
+                
             if (lender == null)
-                return Task.FromResult(false);
+                return false;
 
-            _lenders.Remove(lender);
-            return Task.FromResult(true);
+            _context.Lenders.Remove(lender);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            return Task.FromResult(_lenders.Any(l => l.Id == id));
+            return await _context.Lenders
+                .AnyAsync(l => l.Id == id);
         }
     }
 }

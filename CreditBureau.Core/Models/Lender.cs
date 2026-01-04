@@ -10,5 +10,8 @@ namespace CreditBureau.Core.Models
         public string Email { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+
+        // Навигационные свойства
+        public ICollection<CreditHistory> CreditHistories { get; set; } = new List<CreditHistory>();
     }
 }
